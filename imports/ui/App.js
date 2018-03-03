@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
+import { withTracker } from "meteor/react-meteor-data";
+
+import { Notes } from "../api/notes.js";
 
 import Note from './components/Note.js';
 
-export default class App extends Component {
-    getNotes() {
-        return [
-            { _id: 1, text: 'Hey look a note' },
-            { _id: 2, text: 'Hey look a note' },
-            { _id: 3, text: 'Hey look a note' },
-        ];
-    }
-
+class App extends Component {
     renderNotes() {
-        return this.getNotes().map((note) => (
+        return this.props.notes.map((note) => (
             <Note key={note._id} note={note} />
         ));
     }
@@ -33,3 +28,9 @@ export default class App extends Component {
         );
     }
 }
+
+export default withTracker(() => {
+    return {
+        notes: Notes.find({}).fetch(),
+    };
+})(App);
