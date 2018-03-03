@@ -1,0 +1,46 @@
+$leather1: rgb(235, 195, 159);
+$leather: rgb(201, 152, 107);
+$leather2: rgb(70, 49, 29);
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html, body, #render-target, .container {
+    background-color: $leather;
+}
+
+.container {
+    display: grid;
+    grid-gap: 1rem;
+}
+
+header {
+    background-color: $leather2;
+}
+
+header h1 {
+    margin: 1rem 1rem;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: $leather1;
+}
+
+ul {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+li {
+    list-style: none;
+    background-color: $leather1;
+    padding: 1rem;
+    font-family: sans-serif;
+}
