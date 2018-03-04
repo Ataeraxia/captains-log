@@ -51,6 +51,10 @@ class App extends Component {
 
 export default withTracker(() => {
     return {
-        notes: Notes.find({}).fetch(),
+        notes: Notes.find({}, {
+            sort: {
+                createdAt: -1
+            }
+        }).fetch(),
     };
 })(App);
