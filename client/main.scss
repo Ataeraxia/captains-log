@@ -43,4 +43,32 @@ li {
     background-color: $leather1;
     padding: 1rem;
     font-family: sans-serif;
+    display: grid;
 }
+
+.note-text {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.date {
+    grid-column-start: 3;
+    text-align: right;
+    font-style: italic;
+    color: rgb(71, 71, 71);
+}
+
+form {
+    padding: 0 1rem;
+}
+
+form input {
+    border: none;
+    padding: 1rem;
+    background-color: $leather1;
+    font-style: italic;
+    width: 60%;
+}
+
