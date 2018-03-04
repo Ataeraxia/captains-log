@@ -53,7 +53,7 @@ li {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 1;
-    line-height: 2rem;
+    margin: auto 0;
 }
 
 .note-extras {
@@ -69,7 +69,7 @@ li {
     grid-row-start: 1;
     font-style: italic;
     color: rgb(71, 71, 71);
-    line-height: 2rem;
+    margin: auto 0;
 }
 
 .delete {
@@ -78,6 +78,8 @@ li {
     background-color: $warning;
     border: none;
     width: 2rem;
+    height: 2rem;
+    margin: auto 0;
 }
 
 .delete:hover {
