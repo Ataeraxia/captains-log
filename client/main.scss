@@ -23,6 +23,9 @@ html, body, #render-target, .container {
 
 header {
     background-color: $leather2;
+    display: grid;
+    justify-content: start;
+    grid-gap: 1rem;
 }
 
 header h1 {
@@ -31,6 +34,40 @@ header h1 {
     font-weight: 100;
     font-size: 1.5rem;
     color: $leather1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.nav-link {
+    // background-color: blue;
+    grid-column-start: 2;
+    background-color: inherit;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+.nav-link button {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid $leather1;
+    border-radius: 8px;
+    color: $leather1;
+    background-color: inherit;
+    grid-column-start: 1;
+}
+
+.nav-link button:hover {
+    cursor: pointer;
+}
+
+#hidden-count {
+    grid-column-start: 2;
+    font-size: 1.5rem;
+    color: $leather1;
+    margin: auto 0;
 }
 
 ul {
