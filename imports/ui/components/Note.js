@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
+import { Meteor } from "meteor/meteor";
 
 import { Notes } from "../../api/notes.js";
 
 export default class Note extends Component {
     toggleHidden() {
-        Notes.update(this.props.note._id, {
-            $set: {
-                hidden: !this.props.note.hidden
-            },
-        });
+        Meteor.call('notes.hide', this.props.note._id, !this.props.note.hidden);
     }
 
     deleteThisNote() {
-        Notes.remove(this.props.note._id);
+        Meteor.call('notes.remove', this.props.note._id);
     }
 
     render() {
         const noteClassName = this.props.note.hidden ? 'hidden' : '';
 
         return (
-            <li className={noteClassName}>
+            <li className={noteClassName} title={this.props.note.username}>
                 <span className="note-text">{this.props.note.text}</span>
                 <div className="note-extras">
                     <span className="date">{this.props.note.createdAt.toLocaleString("en-CA", {

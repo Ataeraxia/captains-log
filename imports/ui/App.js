@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
+import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 
 import { Notes } from "../api/notes.js";
@@ -21,10 +22,8 @@ class App extends Component {
 
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-        Notes.insert({
-            text,
-            createdAt: new Date(),
-        });
+        // Hey Meteor, go find the notes.insert method from imports/api/notes.js and execute it
+        Meteor.call('notes.insert', text);
 
         ReactDOM.findDOMNode(this.refs.textInput).value = '';
     }
@@ -72,12 +71,22 @@ class App extends Component {
 
                 <AccountsUIWrapper />
 
-                <form className="new-note"
+                {/* 
+                  I would like to highlight something
+                  ~"{ this.props.currentUser ? <form/> : ''"
+                  (That's a highlight now okay)
+                  
+                  This piece of syntax is beautiful shorthand for "only display the form is there is a current user"
+                */}
+
+                { this.props.currentUser ?
+                  <form className="new-note"
                       onSubmit={this.handleSubmit.bind(this)}>
                     <input type="text"
                            ref="textInput"
                            placeholder="Write down your thoughts" />
-                </form>
+                </form> : ''
+                }
 
                 <ul>
                     {this.renderNotes()}
@@ -98,5 +107,6 @@ export default withTracker(() => {
         // So, find the Notes where hidden is not equal to false
         // Aka find the Notes that are not shown and count them
         hiddenCount: Notes.find({ hidden: { $ne: false}}).count(),
+        currentUser: Meteor.user(),
     };
 })(App);
