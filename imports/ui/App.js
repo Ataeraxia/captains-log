@@ -5,6 +5,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Notes } from "../api/notes.js";
 
 import Note from './components/Note.js';
+import AccountsUIWrapper from "./components/AccountsUIWrapper.js";
 
 class App extends Component {
     constructor(props){
@@ -68,6 +69,8 @@ class App extends Component {
                         </div>
                     </li>
                 </header>
+
+                <AccountsUIWrapper />
 
                 <form className="new-note"
                       onSubmit={this.handleSubmit.bind(this)}>
