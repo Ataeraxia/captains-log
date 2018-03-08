@@ -12,6 +12,10 @@ export default class Note extends Component {
         Meteor.call('notes.remove', this.props.note._id);
     }
 
+    togglePublic() {
+        Meteor.call('notes.setPublic', this.props.note._id, ! this.props.note.public);
+    }
+
     render() {
         const noteClassName = this.props.note.hidden ? 'hidden' : '';
 
