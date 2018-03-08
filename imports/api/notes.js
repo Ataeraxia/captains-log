@@ -4,6 +4,13 @@ import { check } from "meteor/check";
 
 export const Notes = new Mongo.Collection('notes');
 
+if(Meteor.isServer) {
+  // This is called a publication
+  Meteor.publish('notes', function notesPublication() {
+    return Notes.find();
+  });
+}
+
 Meteor.methods({
   'notes.insert'(text) {
     // Makes sure @text is a String
