@@ -48,4 +48,19 @@ Meteor.methods({
       }
     });
   },
+  'notes.setPublic'(noteId, setToPublic) {
+    // This method is the equiv of the tutorial's setPrivate method
+
+    check(noteId, String);
+    check(setToPublic, Boolean);
+
+    const note = Notes.findOne(noteId);
+
+    // No touchy if no owny
+    if(note.owner !== this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Notes.update(noteId, { $set: { public: setToPublic}})
+  },
 });
