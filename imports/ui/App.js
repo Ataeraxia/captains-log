@@ -46,7 +46,7 @@ class App extends Component {
             const currentUserId = this.props.currentUser && this.props.currentUser._id;
 
             // Can we show the button?
-            const showPulbicButton = note.owner === currentUserId;
+            const showPublicButton = note.owner === currentUserId;
 
             return (
                 <Note key={note._id} 
