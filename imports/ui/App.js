@@ -41,9 +41,19 @@ class App extends Component {
             filteredNotes = filteredNotes.filter(note => !note.hidden);
         }
 
-        return filteredNotes.map((note) => (
-            <Note key={note._id} note={note} />
-        ));
+        return filteredNotes.map((note) => {
+            // Is there a user? Do they have an ID?
+            const currentUserId = this.props.currentUser && this.props.currentUser._id;
+
+            // Can we show the button?
+            const showPulbicButton = note.owner === currentUserId;
+
+            return (
+                <Note key={note._id} 
+                      note={note}
+                      showPublicButton={showPublicButton} />
+            );
+        });
     }
 
     render() {
@@ -99,7 +109,7 @@ class App extends Component {
 export default withTracker(() => {
     // Hey go get our database
     Meteor.subscribe('notes');
-    
+
     return {
         notes: Notes.find({}, {
             sort: {
