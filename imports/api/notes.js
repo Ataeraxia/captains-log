@@ -12,7 +12,8 @@ if(Meteor.isServer) {
       $or: [
         {
           public: {
-            $ne: true
+            // if this is set to true, everyone will see everything
+            $ne: false
           }
         }, {
           owner: this.userId
@@ -40,6 +41,7 @@ Meteor.methods({
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
+      public: false,
     });
   },
   'notes.remove'(noteId) {
