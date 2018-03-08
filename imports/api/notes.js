@@ -7,7 +7,18 @@ export const Notes = new Mongo.Collection('notes');
 if(Meteor.isServer) {
   // This is called a publication
   Meteor.publish('notes', function notesPublication() {
-    return Notes.find();
+    // If it's not yours, don't show it
+    return Notes.find({
+      $or: [
+        {
+          public: {
+            $ne: true
+          }
+        }, {
+          owner: this.userId
+        },
+      ],
+    });
   });
 }
 
