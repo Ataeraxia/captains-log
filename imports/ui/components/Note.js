@@ -31,6 +31,15 @@ export default class Note extends Component {
                         hide
                     </button>
 
+                    {
+                        this.props.showPublicButton ? (
+                            <button className="toggle-public"
+                                    onClick={this.togglePublic.bind(this)}>
+                                {this.props.note.public ? 'Public': 'Private'}
+                            </button>
+                        ) : ''
+                    }
+
                     <button className="delete" onClick={this.deleteThisNote.bind(this)}>
                         &times;
                     </button>
