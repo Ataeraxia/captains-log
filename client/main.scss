@@ -110,7 +110,7 @@ li {
 }
 
 .delete {
-    grid-column-start: 5;
+    grid-column-start: 6;
     grid-row-start: 1;
     background-color: $warning;
     border: none;
@@ -139,6 +139,12 @@ li {
 
 .hide:hover {
     cursor: pointer;
+}
+
+.toggle-public {
+    grid-column-start: 5;
+    background-color: inherit;
+    border: none;
 }
 
 form {
