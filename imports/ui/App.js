@@ -97,6 +97,9 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+    // Hey go get our database
+    Meteor.subscribe('notes');
+    
     return {
         notes: Notes.find({}, {
             sort: {
