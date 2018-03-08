@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from "meteor/meteor";
+import classnames from 'classnames';
 
 import { Notes } from "../../api/notes.js";
 
@@ -17,7 +18,13 @@ export default class Note extends Component {
     }
 
     render() {
-        const noteClassName = this.props.note.hidden ? 'hidden' : '';
+        // I do not understand this at all
+        // Okay maybe I vaguely understand
+        // I guess it toggles the classnames?
+        const noteClassName = classnames({
+            hidden: this.props.note.hidden,
+            public: this.props.note.public,
+        });
 
         return (
             <li className={noteClassName} title={this.props.note.username}>
