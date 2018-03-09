@@ -49,18 +49,6 @@ Meteor.methods({
 
     Notes.remove(noteId);
   },
-  'notes.hide'(noteId, hidden) {
-    // This method is the equiv of the tutorial's setChecked method
-
-    check(noteId, String);
-    check(hidden, Boolean);
-
-    Notes.update(noteId, {
-      $set: {
-        hidden: hidden
-      }
-    });
-  },
   'notes.setPublic'(noteId, setToPublic) {
     // This method is the equiv of the tutorial's setPrivate method
 

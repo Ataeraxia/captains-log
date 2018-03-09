@@ -5,10 +5,6 @@ import classnames from 'classnames';
 import { Notes } from "../../api/notes.js";
 
 export default class Note extends Component {
-    toggleHidden() {
-        Meteor.call('notes.hide', this.props.note._id, !this.props.note.hidden);
-    }
-
     deleteThisNote() {
         Meteor.call('notes.remove', this.props.note._id);
     }
@@ -38,10 +34,6 @@ export default class Note extends Component {
                         hour: "numeric",
                         minute: "numeric",
                     })}</span>
-                    <button className="hide" onClick={this.toggleHidden.bind(this)}>
-                        hide
-                    </button>
-
                     {
                         this.props.showPublicButton ? (
                             <button className="toggle-public"

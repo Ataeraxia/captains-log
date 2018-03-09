@@ -11,10 +11,6 @@ import AccountsUIWrapper from "./components/AccountsUIWrapper.js";
 class App extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            hideCompleted: false,
-        };
     }
 
     handleSubmit(e) {
@@ -28,18 +24,8 @@ class App extends Component {
         ReactDOM.findDOMNode(this.refs.textInput).value = '';
     }
 
-    toggleHideCompleted() {
-        this.setState({
-            hideCompleted: !this.state.hideCompleted,
-        });
-    }
-
     renderNotes() {
         let filteredNotes = this.props.notes;
-
-        if(this.state.hideCompleted) {
-            filteredNotes = filteredNotes.filter(note => !note.hidden);
-        }
 
         return filteredNotes.map((note) => {
             // Is there a user? Do they have an ID?
@@ -65,17 +51,6 @@ class App extends Component {
                     </h1>
 
                     <li className="nav-link">
-                        <button    
-                            className="hide-completed"
-                            title="hide-completed"
-                            readOnly
-                            onClick={this.toggleHideCompleted.bind(this)}>
-                            &harr;
-                        </button>
-
-                        <div id="hidden-count">
-                            {this.props.hiddenCount}
-                        </div>
                     </li>
                 </header>
 
@@ -116,10 +91,6 @@ export default withTracker(() => {
                 createdAt: -1
             }
         }).fetch(),
-        // $ne means "where _ not equal to _"
-        // So, find the Notes where hidden is not equal to false
-        // Aka find the Notes that are not shown and count them
-        hiddenCount: Notes.find({ hidden: { $ne: false}}).count(),
         currentUser: Meteor.user(),
     };
 })(App);
