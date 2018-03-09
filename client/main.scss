@@ -123,24 +123,6 @@ li {
     cursor: pointer;
 }
 
-.hidden {
-    // I don't know why I would want this, just go with it
-    opacity: 0.3;
-}
-
-.hide {
-    grid-column-start: 4;
-    grid-row-start: 1;
-    background-color: inherit;
-    border: none;
-    font-style: italic;
-    font-weight: normal;
-}
-
-.hide:hover {
-    cursor: pointer;
-}
-
 .toggle-public {
     grid-column-start: 5;
     background-color: inherit;
