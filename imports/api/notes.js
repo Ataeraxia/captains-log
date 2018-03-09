@@ -9,13 +9,9 @@ if(Meteor.isServer) {
   Meteor.publish('notes', function notesPublication() {
     // If it's not yours, don't show it
     return Notes.find({
+      // The or selector is probably unnecessary, just wanted to make sure I didn't break my code
       $or: [
         {
-          public: {
-            // if this is set to true, everyone will see everything
-            $ne: false
-          }
-        }, {
           owner: this.userId
         },
       ],
@@ -41,27 +37,11 @@ Meteor.methods({
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
-      public: false,
     });
   },
   'notes.remove'(noteId) {
     check(noteId, String);
 
     Notes.remove(noteId);
-  },
-  'notes.setPublic'(noteId, setToPublic) {
-    // This method is the equiv of the tutorial's setPrivate method
-
-    check(noteId, String);
-    check(setToPublic, Boolean);
-
-    const note = Notes.findOne(noteId);
-
-    // No touchy if no owny
-    if(note.owner !== this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    Notes.update(noteId, { $set: { public: setToPublic}})
   },
 });

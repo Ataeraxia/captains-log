@@ -30,14 +30,10 @@ class App extends Component {
         return filteredNotes.map((note) => {
             // Is there a user? Do they have an ID?
             const currentUserId = this.props.currentUser && this.props.currentUser._id;
-
-            // Can we show the button?
-            const showPublicButton = note.owner === currentUserId;
-
+            
             return (
                 <Note key={note._id} 
-                      note={note}
-                      showPublicButton={showPublicButton} />
+                      note={note}/>
             );
         });
     }
