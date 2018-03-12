@@ -22,6 +22,18 @@ if(Meteor.isServer) {
         });
       });
 
+      it('can create note', function () {
+        // so... create the note
+        const insertNote = Meteor.server.method_handlers['notes.insert'];
+        const invocation = { userId };
+        const noteText = "Some more testest";
+
+        insertNote.apply(invocation, [noteText]);
+
+        assert.equal(Notes.find().count(), 2);
+        // then make sure there are 2 notes
+      });
+
       it('can delete owned note', () => {
         const deleteNote = Meteor.server.method_handlers['notes.remove'];
         const invocation = { userId };
